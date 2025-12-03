@@ -33,6 +33,7 @@ services:
     ports:
       - "3478:3478/tcp"
       - "3478:3478/udp"
+      - "8081:8081/tcp"
 
 volumes:
   nextcloud:
