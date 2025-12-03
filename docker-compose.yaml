@@ -9,16 +9,28 @@ services:
     networks:
       - nc_net
 
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    env_file: redis.env
+    command: sh -c 'redis-server --requirepass $$REDIS_HOST_PASSWORD'
+    volumes:
+      - redis_data:/data
+    networks:
+      - nc_net
+
   app:
     image: nextcloud
     restart: unless-stopped
     links:
       - db
+      - redis
     volumes:
       - nextcloud:/var/www/html
     env_file: 
     - app.env
     - db.env
+    - redis.env
     networks:
       - nc_net
       - reverse-proxy_net
@@ -33,11 +45,13 @@ services:
     ports:
       - "3478:3478/tcp"
       - "3478:3478/udp"
+      - "5349:5349/tcp"
       - "8081:8081/tcp"
 
 volumes:
   nextcloud:
   db:
+  redis_data:
 
 networks:
   nc_net:
