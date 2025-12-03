@@ -4,4 +4,4 @@ After the initial creation of the containers go through the setup and open admin
 URL: wss://signal.buldev.com
 Shared secret: value of SIGNALING_SECRET
 
-Install UnifiedPush on the nextcloud server for Fdroid push notification integration
+TURN server guide: https://help.nextcloud.com/t/high-performance-backend-for-talk-on-nextcloud-with-docker/215828
