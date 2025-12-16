@@ -15,7 +15,7 @@ services:
     env_file: redis.env
     command: sh -c 'redis-server --requirepass $$REDIS_HOST_PASSWORD'
     volumes:
-      - ./data/redis_data:/data
+      - ./data/redis:/data
     networks:
       - nc_net
 
